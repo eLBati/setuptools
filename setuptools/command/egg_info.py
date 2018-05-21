@@ -519,14 +519,18 @@ class manifest_maker(sdist):
 
     def run(self):
         self.filelist = FileList()
+        print("\n\nself.filelist.files: %s\n\n" % self.filelist.files)
         if not os.path.exists(self.manifest):
             self.write_manifest()  # it must exist so it'll get in the list
         self.add_defaults()
+        print("\n\nself.filelist.files: %s\n\n" % self.filelist.files)
         if os.path.exists(self.template):
             self.read_template()
         self.prune_file_list()
+        print("\n\nself.filelist.files: %s\n\n" % self.filelist.files)
         self.filelist.sort()
         self.filelist.remove_duplicates()
+        print("\n\nself.filelist.files: %s\n\n" % self.filelist.files)
         self.write_manifest()
 
     def _manifest_normalize(self, path):

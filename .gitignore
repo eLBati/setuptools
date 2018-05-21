@@ -17,3 +17,4 @@ setuptools.egg-info
 .hg*
 .cache
 .pytest_cache/
+.idea
