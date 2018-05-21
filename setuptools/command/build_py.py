@@ -1,3 +1,4 @@
+from distutils import log
 from glob import glob
 from distutils.util import convert_path
 import distutils.command.build_py as orig
@@ -128,6 +129,7 @@ class build_py(orig.build_py, Mixin2to3):
 
     def analyze_manifest(self):
         self.manifest_files = mf = {}
+        log.info('include_package_data is %s', self.distribution.include_package_data)
         if not self.distribution.include_package_data:
             return
         src_dirs = {}
@@ -137,6 +139,7 @@ class build_py(orig.build_py, Mixin2to3):
 
         self.run_command('egg_info')
         ei_cmd = self.get_finalized_command('egg_info')
+        log.info(ei_cmd.filelist.files)
         for path in ei_cmd.filelist.files:
             d, f = os.path.split(assert_relative(path))
             prev = None
