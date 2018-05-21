@@ -17,7 +17,9 @@ _default_revctrl = list
 def walk_revctrl(dirname=''):
     """Find all files under revision control"""
     for ep in pkg_resources.iter_entry_points('setuptools.file_finders'):
+        print("ep: %s" % ep)
         for item in ep.load()(dirname):
+            print("yield item: %s" % item)
             yield item
 
 
